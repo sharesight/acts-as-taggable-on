@@ -10,8 +10,9 @@ module ActsAsTaggableOn
     ### VALIDATIONS:
 
     validates_presence_of :name
-    validates_uniqueness_of :name, if: :validates_name_uniqueness?, case_sensitive: true
     validates_length_of :name, maximum: 255
+
+    validate :name_is_unique
 
     # monkey patch this method if don't need name uniqueness validation
     def validates_name_uniqueness?
@@ -107,6 +108,17 @@ module ActsAsTaggableOn
 
     def count
       read_attribute(:count).to_i
+    end
+
+    private
+
+    def name_is_unique
+      return unless self.class.named(name).exists?
+
+      type_of_comparison = ActsAsTaggableOn.strict_case_match ? 'case-sensitive' : 'case-insensitive'
+      error_message = "has already been taken (using #{type_of_comparison} comparison)"
+
+      errors.add(:name, error_message)
     end
 
     class << self
