@@ -2,7 +2,6 @@
 *.sqlite3
 /pkg/*
 .bundle
-.ruby-version
 spec/internal/config/database.yml
 tmp*.sw?
 *.sw?
