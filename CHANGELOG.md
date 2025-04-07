@@ -10,12 +10,24 @@ Each change should fall into categories that would affect whether the release is
 
 As such, _Breaking Changes_ are major. _Features_ would map to either major or minor. _Fixes_, _Performance_, and _Misc_ are either minor or patch, the difference being kind of fuzzy for the purposes of history. Adding _Documentation_ (including tests) would be patch level.
 
-### [v9.0.2) / unreleased](https://github.com/mbleigh/acts-as-taggable-on/compare/v9.0.1...master)
+### [v11.0.1) / 20xx-08-23](https://github.com/mbleigh/acts-as-taggable-on/compare/v11.0.0...v11.0.1)
+* Fixes
+  * [@FunnyHector Fix the uniqueness validator deprecation warning on Rails 6](https://github.com/mbleigh/acts-as-taggable-on/pull/1009)
+
+### [v11.0.0) / 2024-08-23](https://github.com/mbleigh/acts-as-taggable-on/compare/v10.0.0...v11.0.0)
+- Removed support for Ruby 2.7
+- Removed support for Rails 6.1
+- Added support for Ruby 3.2 and 3.3
+- Added support for Rails 7.2
+- Remove legacy code
+- Renamed gem folder from acts_as_taggable_on to acts-as-taggable-on
+- Removed legacy autoloading and replaced it with zeitwerk
+
+### [v10.0.0) / 2023-10-15](https://github.com/mbleigh/acts-as-taggable-on/compare/v9.0.1...v10.0.0)
 * Features
   * [@glampr Add support for prefix and suffix searches alongside previously supported containment (wildcard) searches](https://github.com/mbleigh/acts-as-taggable-on/pull/1082)
   * [@donquxiote Add support for horizontally sharded databases](https://github.com/mbleigh/acts-as-taggable-on/pull/1079)
-* Fixes
-  * [@FunnyHector Fix the uniqueness validator deprecation warning on Rails 6](https://github.com/mbleigh/acts-as-taggable-on/pull/1009)
+  * [aovertus Remove restriction around ActiveRecord 7.x versions allowing support until next major is released](https://github.com/mbleigh/acts-as-taggable-on/pull/1110)
 
 ### [v9.0.1) / 2022-01-07](https://github.com/mbleigh/acts-as-taggable-on/compare/v9.0.0..v9.0.1)
 * Fixes
@@ -122,7 +134,7 @@ As such, _Breaking Changes_ are major. _Features_ would map to either major or m
 
 * Fixes
   * [@rikettsie #623 collation parameter is ignored if it generates an exception](https://github.com/mbleigh/acts-as-taggable-on/pull/650)
-  * [@bwvoss References working parser in deprectation warning](https://github.com/mbleigh/acts-as-taggable-on/pull/659)
+  * [@bwvoss References working parser in deprecation warning](https://github.com/mbleigh/acts-as-taggable-on/pull/659)
   * [@jh125486 Updated tagging_contexts to include dynamic contexts](https://github.com/mbleigh/acts-as-taggable-on/pull/660)
   * [@jh125486 Fixed wildcard test (postgres returning rows with unexpected order)](https://github.com/mbleigh/acts-as-taggable-on/pull/660)
   * [@FlowerWrong Add rails 5.0.0 alpha support, not hack rails <5](https://github.com/mbleigh/acts-as-taggable-on/pull/673)
@@ -143,7 +155,7 @@ As such, _Breaking Changes_ are major. _Features_ would map to either major or m
   * [@seuros Remove more deprecations](https://github.com/mbleigh/acts-as-taggable-on/commit/05794170f64f8bf250b34d2d594e368721009278)
   * [@lukeasrodgers Bugfix `TagList#concat` with non-duplicates.](https://github.com/mbleigh/acts-as-taggable-on/commit/2c6214f0ddf8c6440ab81eec04d1fbf9d97c8826)
   * [@seuros clean! should return self.](https://github.com/mbleigh/acts-as-taggable-on/commit/c739422f56f8ff37e3f321235e74997422a1c980)
-  * [@rbritom renable appraisals](https://github.com/mbleigh/acts-as-taggable-on/commit/0ca1f1c5b059699c683a28b522e86a3d5cd7639e)
+  * [@rbritom re-enable appraisals](https://github.com/mbleigh/acts-as-taggable-on/commit/0ca1f1c5b059699c683a28b522e86a3d5cd7639e)
   * [@rbritom remove index conditionally on up method.](https://github.com/mbleigh/acts-as-taggable-on/commit/9cc580e7f88164634eb10c8826e5b30ea0e00544)
   * [@rbritom add index on down method . ](https://github.com/mbleigh/acts-as-taggable-on/pull/767)
   * [@rbritom remove index conditionally on up method](https://github.com/mbleigh/acts-as-taggable-on/commit/9cc580e7f88164634eb10c8826e5b30ea0e00544)

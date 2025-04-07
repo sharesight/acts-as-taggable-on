@@ -234,6 +234,25 @@ describe ActsAsTaggableOn::Tag do
     it 'should return an empty array if no tags are specified' do
       expect(ActsAsTaggableOn::Tag.find_or_create_all_with_like_by_name([])).to be_empty
     end
+
+    context 'another tag is created concurrently', :database_cleaner_delete, if: supports_concurrency?  do
+      it 'retries and finds tag if tag with same name created concurrently' do
+        tag_name = 'super'
+
+        expect(ActsAsTaggableOn::Tag).to receive(:create).with(name: tag_name) do
+          # Simulate concurrent tag creation
+          Thread.new do
+            ActsAsTaggableOn::Tag.new(name: tag_name).save!
+          end.join
+
+          raise ActiveRecord::RecordNotUnique
+        end
+
+        expect {
+          ActsAsTaggableOn::Tag.find_or_create_all_with_like_by_name(tag_name)
+        }.to change(ActsAsTaggableOn::Tag, :count).by(1)
+      end
+    end
   end
 
   it 'should require a name' do
@@ -427,9 +446,9 @@ describe ActsAsTaggableOn::Tag do
     context "custom" do
       it "inherits from custom class" do
 
-        ActsAsTaggableOn.base_class = Foo
+        ActsAsTaggableOn.base_class = 'Foo'
         hide_const("ActsAsTaggableOn::Tag")
-        load("lib/acts_as_taggable_on/tag.rb")
+        load("lib/acts-as-taggable-on/tag.rb")
 
         expect(ActsAsTaggableOn::Tag.ancestors).to include(Foo)
       end

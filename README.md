@@ -22,7 +22,6 @@
       - [Upgrading](#upgrading)
   - [Contributors](#contributors)
   - [Compatibility](#compatibility)
-  - [TODO](#todo)
   - [Testing](#testing)
   - [License](#license)
 
@@ -57,7 +56,7 @@ was used.
 To use it, add it to your Gemfile:
 
 ```ruby
-gem 'acts-as-taggable-on', '~> 9.0'
+gem 'acts-as-taggable-on'
 ```
 
 and bundle:
@@ -300,6 +299,15 @@ to allow for dynamic tag contexts (this could be user generated tag contexts!)
 User.tagged_with("same", :on => :customs) # => [@user]
 ```
 
+### Finding tags based on context
+
+You can find tags for a specific context by using the ```for_context``` scope:
+
+```ruby
+ActsAsTaggableOn::Tag.for_context(:tags)
+ActsAsTaggableOn::Tag.for_context(:skills)
+```
+
 ### Tag Parsers
 
 If you want to change how tags are parsed, you can define your own implementation:
@@ -368,7 +376,7 @@ Note that `tag_list` only returns tags whose taggings do not have an owner. Cont
 To retrieve all tags of an object (regardless of ownership) or if only one owner can tag the object, use `all_tags_list`.
 
 ##### Adding owned tags
-Note that **owned tags** are added all at once, in the form of ***comma seperated tags*** in string.
+Note that **owned tags** are added all at once, in the form of ***comma separated tags*** in string.
 Also, when you try to add **owned tags** again, it simply overwrites the previous set of **owned tags**.
 So to append tags in previously existing **owned tags** list, go as follows:
 ```ruby
